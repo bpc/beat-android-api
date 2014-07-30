@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">playhead-api-test</string>
+    <string name="app_name">beat-android-api</string>
     <string name="sample_service_title">BEAT API 테스트</string>
 </resources>
