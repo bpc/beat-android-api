@@ -43,6 +43,7 @@ private ServiceConnection connection = new ServiceConnection() {
 | void pause() | 음악을 일시정지 시킴 |
 | void resume() | 음악을 재생시킴 |
 | boolean isAuthenticated() | 로그인 되어있는지의 여부를 구함 |
+| void authenticate() | 비로그인시 로그인 화면 표시 (비트앱의 비로그인시 첫 화면이 로그인 화면이므로 별도의 메소드를 제공하지 않음) |
 
 
 
