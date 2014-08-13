@@ -7,10 +7,10 @@ BEAT 안드로이드 어플리케이션 연동을 위한 공개 API입니다.
 * Target Android SDK : 19 (KitKat, 4.4)
 
 ## 연동 방법
- 1. 연동하고자 하는 프로젝트에 IBeatApiService.java를 import합니다.
-  * (IBeatApiService.java는 본 저장소에서 제공하는 프로젝트의 com.beatpacking.beat.services 폴더에 있습니다.)
- 2. BEAT 어플리케이션과 통신하기 위해 ServiceConnection을 열고 IBeatApiService 객체를 생성합니다. 
-  * 생성된 IBeatApiService로 BEAT ANDROID API를 이용할 수 있습니다.
+ 1. 연동하고자 하는 프로젝트에 ```IBeatApiService.java``` 를 ```import``` 합니다.
+  * (```IBeatApiService.java``` 는 본 저장소에서 제공하는 프로젝트의 ```com.beatpacking.beat.services``` 폴더에 있습니다.)
+ 2. BEAT 어플리케이션과 통신하기 위해 ```ServiceConnection``` 을 열고 ```IBeatApiService``` 객체를 생성합니다. 
+  * 생성된 ```IBeatApiService``` 로 BEAT ANDROID API를 이용할 수 있습니다.
   ```java
   IBeatApiService apiService;
 
@@ -40,18 +40,17 @@ BEAT 안드로이드 어플리케이션 연동을 위한 공개 API입니다.
 ```
 
 ## 제공 기능
-### public class IBeatPlayService
+### ```public class IBeatPlayService```
 | Public Methods | Description |
 | -------------- | --------------- |
-| void setHeadVisible(boolean visibility) | 플레이헤드 표시/숨김 |
-| boolean isHeadVisible() | 플레이헤드 표시여부 확인 |
-| void setHeadLocation(int x, int y) | 스크린의 X(가로), Y(세로) 좌표로 플레이헤드를 이동시킴 |
-| int getHeadX() | 플레이헤드의 스크린상 X 좌표를 구함 |
-| int getHeadY() | 플레이헤드의 스크린상 Y 좌표를 구함 |
-| void pause() | 음악을 일시정지 시킴 |
-| void resume() | 음악을 재생시킴 |
-| boolean isAuthenticated() | 로그인 되어있는지의 여부를 구함 |
-| ~~void authenticate()~~ | ~~비로그인시 로그인 화면 표시~~ (비트앱의 비로그인시 첫 화면이 로그인 화면이므로 별도의 메소드를 제공하지 않음) |
+| ```void setHeadVisible(boolean visibility)``` | 플레이헤드 표시/숨김 |
+| ```boolean isHeadVisible()``` | 플레이헤드 표시여부 확인 |
+| ```void setHeadLocation(int x, int y)``` | 스크린의 X(가로), Y(세로) 좌표로 플레이헤드를 이동시킴 |
+| ```int getHeadX()``` | 플레이헤드의 스크린상 X 좌표를 구함 |
+| ```int getHeadY()``` | 플레이헤드의 스크린상 Y 좌표를 구함 |
+| ```void pause()``` | 음악을 일시정지 시킴 |
+| ```void resume()``` | 음악을 재생시킴 |
+| ```boolean isAuthenticated()``` | 로그인 되어있는지의 여부를 구함 |
 
 
 
