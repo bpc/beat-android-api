@@ -53,4 +53,7 @@ BEAT 안드로이드 어플리케이션 연동을 위한 공개 API입니다.
 | ```boolean isAuthenticated()``` | 로그인 되어있는지의 여부를 구함 |
 
 
+## 라이센스 
+
+beat-android-api is released under the [MIT License](http://www.opensource.org/licenses/MIT).
 
