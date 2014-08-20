@@ -29,6 +29,8 @@ public class MainActivity extends Activity {
     boolean bound = false;
 
     TextView btnConnect;
+    private TextView dragStatus;
+    private CheckBox dragState;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -94,13 +96,13 @@ public class MainActivity extends Activity {
                 case MSG_CONNECTED:
                     if (dialog == null) {
                         try {
-                            if (apiService.isAuthenticated()) {
+//                            if (apiService.isAuthenticated()) {
                                 dialog = new TestDialog(MainActivity.this);
                                 dialog.show();
-                            } else {
+                            /*} else {
                                 unbindService(connection);
                                 apiService = null;
-                            }
+                            }*/
                         } catch (Exception e) {
                             e.printStackTrace();
                             unbindService(connection);
@@ -161,6 +163,8 @@ public class MainActivity extends Activity {
             userStatus = (TextView) findViewById(R.id.user_status);
             headStatus = (TextView) findViewById(R.id.playhead_status);
             toggleState = (CheckBox) findViewById(R.id.playhead_toggle);
+            dragStatus = (TextView) findViewById(R.id.playhead_drag_status);
+            dragState = (CheckBox) findViewById(R.id.playhead_drag_toggle);
             editX = (EditText) findViewById(R.id.edit_x);
             editY = (EditText) findViewById(R.id.edit_y);
             btnMove = (TextView) findViewById(R.id.btn_move);
@@ -176,6 +180,8 @@ public class MainActivity extends Activity {
             try {
                 userStatus.setText(apiService.isAuthenticated() ? "AUTHENTICATED" : "NOT AUTHENTICATED");
                 headStatus.setText(apiService.isHeadVisible() ? "VISIBLE" : "INVISIBLE");
+                dragStatus.setText(apiService.isMovable() ? "AVAILABLE" : "NOT AVAILABLE");
+                dragState.setChecked(apiService.isMovable() ? true : false);
                 toggleState.setChecked(apiService.isHeadVisible() ? true : false);
 
                 editX.setText("" + Integer.toString(apiService.getHeadX()));
@@ -192,6 +198,28 @@ public class MainActivity extends Activity {
                 @Override
                 public void onClick(View v) {
                     initView();
+                }
+            });
+
+            dragState.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    try{
+                        apiService.setMovable(isChecked);
+                    } catch (RemoteException e){
+                        e.printStackTrace();
+                    }
+
+                    messageHandler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                          try{
+                              dragStatus.setText(apiService.isMovable() ? "AVAILABLE" : "NOT AVAILABLE");
+                          } catch (RemoteException e){
+                              e.printStackTrace();
+                          }
+                        }
+                    }, 500);
                 }
             });
 

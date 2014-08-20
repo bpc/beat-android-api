@@ -1,10 +1,10 @@
-package com.beatpacking.beat.services;/*___Generated_by_IDEA___*/
+/*___Generated_by_IDEA___*/
 
 /*
  * This file is auto-generated.  DO NOT MODIFY.
  * Original file: /Users/Eugene/beat/beat-android/app/src/main/java/com/beatpacking/beat/services/IBeatApiService.aidl
  */
-
+package com.beatpacking.beat.services;
 /**
  * Created by Eugene on 7/25/14.
  */
@@ -13,7 +13,7 @@ public interface IBeatApiService extends android.os.IInterface
     /** Local-side IPC implementation stub class. */
     public static abstract class Stub extends android.os.Binder implements com.beatpacking.beat.services.IBeatApiService
     {
-        private static final String DESCRIPTOR = "com.beatpacking.beat.services.IBeatApiService";
+        private static final java.lang.String DESCRIPTOR = "com.beatpacking.beat.services.IBeatApiService";
         /** Construct the stub at attach it to the interface. */
         public Stub()
         {
@@ -113,6 +113,23 @@ public interface IBeatApiService extends android.os.IInterface
                     reply.writeInt(((_result)?(1):(0)));
                     return true;
                 }
+                case TRANSACTION_setMovable:
+                {
+                    data.enforceInterface(DESCRIPTOR);
+                    boolean _arg0;
+                    _arg0 = (0!=data.readInt());
+                    this.setMovable(_arg0);
+                    reply.writeNoException();
+                    return true;
+                }
+                case TRANSACTION_isMovable:
+                {
+                    data.enforceInterface(DESCRIPTOR);
+                    boolean _result = this.isMovable();
+                    reply.writeNoException();
+                    reply.writeInt(((_result)?(1):(0)));
+                    return true;
+                }
             }
             return super.onTransact(code, data, reply, flags);
         }
@@ -127,7 +144,7 @@ public interface IBeatApiService extends android.os.IInterface
             {
                 return mRemote;
             }
-            public String getInterfaceDescriptor()
+            public java.lang.String getInterfaceDescriptor()
             {
                 return DESCRIPTOR;
             }
@@ -258,6 +275,38 @@ public interface IBeatApiService extends android.os.IInterface
                 }
                 return _result;
             }
+            @Override public void setMovable(boolean movable) throws android.os.RemoteException
+            {
+                android.os.Parcel _data = android.os.Parcel.obtain();
+                android.os.Parcel _reply = android.os.Parcel.obtain();
+                try {
+                    _data.writeInterfaceToken(DESCRIPTOR);
+                    _data.writeInt(((movable)?(1):(0)));
+                    mRemote.transact(Stub.TRANSACTION_setMovable, _data, _reply, 0);
+                    _reply.readException();
+                }
+                finally {
+                    _reply.recycle();
+                    _data.recycle();
+                }
+            }
+            @Override public boolean isMovable() throws android.os.RemoteException
+            {
+                android.os.Parcel _data = android.os.Parcel.obtain();
+                android.os.Parcel _reply = android.os.Parcel.obtain();
+                boolean _result;
+                try {
+                    _data.writeInterfaceToken(DESCRIPTOR);
+                    mRemote.transact(Stub.TRANSACTION_isMovable, _data, _reply, 0);
+                    _reply.readException();
+                    _result = (0!=_reply.readInt());
+                }
+                finally {
+                    _reply.recycle();
+                    _data.recycle();
+                }
+                return _result;
+            }
         }
         static final int TRANSACTION_setHeadVisible = (android.os.IBinder.FIRST_CALL_TRANSACTION + 0);
         static final int TRANSACTION_isHeadVisible = (android.os.IBinder.FIRST_CALL_TRANSACTION + 1);
@@ -267,6 +316,8 @@ public interface IBeatApiService extends android.os.IInterface
         static final int TRANSACTION_pause = (android.os.IBinder.FIRST_CALL_TRANSACTION + 5);
         static final int TRANSACTION_resume = (android.os.IBinder.FIRST_CALL_TRANSACTION + 6);
         static final int TRANSACTION_isAuthenticated = (android.os.IBinder.FIRST_CALL_TRANSACTION + 7);
+        static final int TRANSACTION_setMovable = (android.os.IBinder.FIRST_CALL_TRANSACTION + 8);
+        static final int TRANSACTION_isMovable = (android.os.IBinder.FIRST_CALL_TRANSACTION + 9);
     }
     public void setHeadVisible(boolean b) throws android.os.RemoteException;
     public boolean isHeadVisible() throws android.os.RemoteException;
@@ -276,4 +327,6 @@ public interface IBeatApiService extends android.os.IInterface
     public void pause() throws android.os.RemoteException;
     public void resume() throws android.os.RemoteException;
     public boolean isAuthenticated() throws android.os.RemoteException;
+    public void setMovable(boolean movable) throws android.os.RemoteException;
+    public boolean isMovable() throws android.os.RemoteException;
 }
