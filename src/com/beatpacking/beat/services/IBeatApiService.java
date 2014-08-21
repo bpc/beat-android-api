@@ -130,6 +130,23 @@ public interface IBeatApiService extends android.os.IInterface
                     reply.writeInt(((_result)?(1):(0)));
                     return true;
                 }
+                case TRANSACTION_setWidthRatio:
+                {
+                    data.enforceInterface(DESCRIPTOR);
+                    float _arg0;
+                    _arg0 = data.readFloat();
+                    this.setWidthRatio(_arg0);
+                    reply.writeNoException();
+                    return true;
+                }
+                case TRANSACTION_getWidthRatio:
+                {
+                    data.enforceInterface(DESCRIPTOR);
+                    float _result = this.getWidthRatio();
+                    reply.writeNoException();
+                    reply.writeFloat(_result);
+                    return true;
+                }
             }
             return super.onTransact(code, data, reply, flags);
         }
@@ -307,6 +324,38 @@ public interface IBeatApiService extends android.os.IInterface
                 }
                 return _result;
             }
+            @Override public void setWidthRatio(float widthRatio) throws android.os.RemoteException
+            {
+                android.os.Parcel _data = android.os.Parcel.obtain();
+                android.os.Parcel _reply = android.os.Parcel.obtain();
+                try {
+                    _data.writeInterfaceToken(DESCRIPTOR);
+                    _data.writeFloat(widthRatio);
+                    mRemote.transact(Stub.TRANSACTION_setWidthRatio, _data, _reply, 0);
+                    _reply.readException();
+                }
+                finally {
+                    _reply.recycle();
+                    _data.recycle();
+                }
+            }
+            @Override public float getWidthRatio() throws android.os.RemoteException
+            {
+                android.os.Parcel _data = android.os.Parcel.obtain();
+                android.os.Parcel _reply = android.os.Parcel.obtain();
+                float _result;
+                try {
+                    _data.writeInterfaceToken(DESCRIPTOR);
+                    mRemote.transact(Stub.TRANSACTION_getWidthRatio, _data, _reply, 0);
+                    _reply.readException();
+                    _result = _reply.readFloat();
+                }
+                finally {
+                    _reply.recycle();
+                    _data.recycle();
+                }
+                return _result;
+            }
         }
         static final int TRANSACTION_setHeadVisible = (android.os.IBinder.FIRST_CALL_TRANSACTION + 0);
         static final int TRANSACTION_isHeadVisible = (android.os.IBinder.FIRST_CALL_TRANSACTION + 1);
@@ -318,6 +367,8 @@ public interface IBeatApiService extends android.os.IInterface
         static final int TRANSACTION_isAuthenticated = (android.os.IBinder.FIRST_CALL_TRANSACTION + 7);
         static final int TRANSACTION_setMovable = (android.os.IBinder.FIRST_CALL_TRANSACTION + 8);
         static final int TRANSACTION_isMovable = (android.os.IBinder.FIRST_CALL_TRANSACTION + 9);
+        static final int TRANSACTION_setWidthRatio = (android.os.IBinder.FIRST_CALL_TRANSACTION + 10);
+        static final int TRANSACTION_getWidthRatio = (android.os.IBinder.FIRST_CALL_TRANSACTION + 11);
     }
     public void setHeadVisible(boolean b) throws android.os.RemoteException;
     public boolean isHeadVisible() throws android.os.RemoteException;
@@ -329,4 +380,6 @@ public interface IBeatApiService extends android.os.IInterface
     public boolean isAuthenticated() throws android.os.RemoteException;
     public void setMovable(boolean movable) throws android.os.RemoteException;
     public boolean isMovable() throws android.os.RemoteException;
+    public void setWidthRatio(float widthRatio) throws android.os.RemoteException;
+    public float getWidthRatio() throws android.os.RemoteException;
 }

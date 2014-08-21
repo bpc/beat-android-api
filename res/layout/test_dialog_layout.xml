@@ -123,9 +123,54 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="0dp"/>
-
-
     </LinearLayout>
+
+    <View android:layout_width="match_parent"
+          android:layout_height="1dp"
+          android:layout_marginTop="5dp"
+          android:layout_marginBottom="5dp"
+          android:background="#CCC"/>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" android:gravity="center_vertical">
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="플레이헤드 크기"
+                android:textSize="14dp"
+                android:textColor="#555"/>
+        <EditText
+                android:id="@+id/edit_width"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="100"
+                android:textSize="13dp"
+                android:maxLength="3"
+                android:singleLine="true"
+                android:textColor="#777" android:inputType="phone|number|numberDecimal|numberSigned"/>
+
+        <TextView
+                android:id="@+id/playhead_"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="%"
+                android:textSize="14dp"
+                android:textColor="#555"/>
+        <TextView
+                android:id="@+id/btn_decide"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="설정"
+                android:textSize="14dp"
+                android:textColor="#222"
+                android:background="@drawable/default_button"/>
+    </LinearLayout>
+
     <View android:layout_width="match_parent"
           android:layout_height="1dp"
           android:layout_marginTop="5dp"

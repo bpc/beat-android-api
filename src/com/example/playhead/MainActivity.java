@@ -10,10 +10,7 @@ import android.os.*;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
-import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.*;
 import com.beatpacking.beat.services.IBeatApiService;
 
 public class MainActivity extends Activity {
@@ -29,8 +26,6 @@ public class MainActivity extends Activity {
     boolean bound = false;
 
     TextView btnConnect;
-    private TextView dragStatus;
-    private CheckBox dragState;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -132,6 +127,10 @@ public class MainActivity extends Activity {
 
         TextView refresh;
         TextView userStatus;
+        TextView dragStatus;
+        CheckBox dragState;
+        EditText editWidth;
+        TextView btnDecide;
         TextView headStatus;
         CheckBox toggleState;
         EditText editX;
@@ -165,6 +164,8 @@ public class MainActivity extends Activity {
             toggleState = (CheckBox) findViewById(R.id.playhead_toggle);
             dragStatus = (TextView) findViewById(R.id.playhead_drag_status);
             dragState = (CheckBox) findViewById(R.id.playhead_drag_toggle);
+            editWidth = (EditText) findViewById(R.id.edit_width);
+            btnDecide = (TextView) findViewById(R.id.btn_decide);
             editX = (EditText) findViewById(R.id.edit_x);
             editY = (EditText) findViewById(R.id.edit_y);
             btnMove = (TextView) findViewById(R.id.btn_move);
@@ -180,6 +181,7 @@ public class MainActivity extends Activity {
             try {
                 userStatus.setText(apiService.isAuthenticated() ? "AUTHENTICATED" : "NOT AUTHENTICATED");
                 headStatus.setText(apiService.isHeadVisible() ? "VISIBLE" : "INVISIBLE");
+                editWidth.setText(Integer.toString((int)(100 * apiService.getWidthRatio())));
                 dragStatus.setText(apiService.isMovable() ? "AVAILABLE" : "NOT AVAILABLE");
                 dragState.setChecked(apiService.isMovable() ? true : false);
                 toggleState.setChecked(apiService.isHeadVisible() ? true : false);
@@ -220,6 +222,20 @@ public class MainActivity extends Activity {
                           }
                         }
                     }, 500);
+                }
+            });
+
+            btnDecide.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    float width = Float.parseFloat(editWidth.getText().toString())/100;
+                    try {
+                        apiService.setWidthRatio(width);
+
+                        Toast.makeText(MainActivity.this, "width : " + width, Toast.LENGTH_SHORT);
+                    } catch (RemoteException e) {
+                        e.printStackTrace();
+                    }
                 }
             });
 
