@@ -53,6 +53,8 @@ BEAT 안드로이드 어플리케이션 연동을 위한 공개 API입니다.
 | ```boolean isAuthenticated()``` | 로그인 되어있는지의 여부를 구함 |
 | ```void setMovable(boolean movable)``` | 플레이헤드를 드래그하여 이동 가능/불가능하게 함 |
 | ```boolean isMovable()``` | 플레이헤드의 드래그 가능 여부를 구함 |
+| ```void setWidthRatio(float widthRatio)``` | 플레이헤드가 화면을 차지하는 비율 설정 |
+| ```float getWidthRatio()``` | 플레이헤드가 화면을 차지하는 비율을 구함 |
 
 
 ## 라이센스 
