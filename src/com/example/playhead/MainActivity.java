@@ -127,6 +127,8 @@ public class MainActivity extends Activity {
 
         TextView refresh;
         TextView userStatus;
+        TextView hideStatus;
+        CheckBox hideState;
         TextView dragStatus;
         CheckBox dragState;
         EditText editWidth;
@@ -162,6 +164,8 @@ public class MainActivity extends Activity {
             userStatus = (TextView) findViewById(R.id.user_status);
             headStatus = (TextView) findViewById(R.id.playhead_status);
             toggleState = (CheckBox) findViewById(R.id.playhead_toggle);
+            hideStatus = (TextView) findViewById(R.id.playhead_hide_status);
+            hideState = (CheckBox) findViewById(R.id.playhead_hide_toggle);
             dragStatus = (TextView) findViewById(R.id.playhead_drag_status);
             dragState = (CheckBox) findViewById(R.id.playhead_drag_toggle);
             editWidth = (EditText) findViewById(R.id.edit_width);
@@ -182,6 +186,8 @@ public class MainActivity extends Activity {
                 userStatus.setText(apiService.isAuthenticated() ? "AUTHENTICATED" : "NOT AUTHENTICATED");
                 headStatus.setText(apiService.isHeadVisible() ? "VISIBLE" : "INVISIBLE");
                 editWidth.setText(Integer.toString((int)(100 * apiService.getWidthRatio())));
+                hideStatus.setText(apiService.isHideable() ? "AVAILABLE" : "NOT AVAILABLE");
+                hideState.setChecked(apiService.isHideable() ? true : false);
                 dragStatus.setText(apiService.isMovable() ? "AVAILABLE" : "NOT AVAILABLE");
                 dragState.setChecked(apiService.isMovable() ? true : false);
                 toggleState.setChecked(apiService.isHeadVisible() ? true : false);
@@ -200,6 +206,28 @@ public class MainActivity extends Activity {
                 @Override
                 public void onClick(View v) {
                     initView();
+                }
+            });
+
+            hideState.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    try{
+                        apiService.setHideable(isChecked);
+                    } catch (RemoteException e){
+                        e.printStackTrace();
+                    }
+
+                    messageHandler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            try{
+                                hideStatus.setText(apiService.isHideable() ? "AVAILABLE" : "NOT AVAILABLE");
+                            } catch (RemoteException e){
+                                e.printStackTrace();
+                            }
+                        }
+                    }, 500);
                 }
             });
 

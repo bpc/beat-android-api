@@ -1,274 +1,312 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<LinearLayout
+<ScrollView
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
         android:layout_margin="10dp"
-        android:background="#fff"
-        android:layout_gravity="center">
+        android:layout_gravity="center"
+        android:background="#fff">
 
     <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-        <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/sample_service_title"
-                android:textSize="30dp"
-                android:textColor="#222222"/>
-        <TextView
-                android:id="@+id/refresh"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="새로고침"
-                android:textColor="#777"/>
-
-    </LinearLayout>
-
-    <View android:layout_width="match_parent"
-          android:layout_height="1dp"
-          android:layout_marginTop="5dp"
-          android:layout_marginBottom="10dp"
-          android:background="#888"/>
-    <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_gravity="center_vertical">
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="로그인 상태"
-                android:textSize="14dp"
-                android:textColor="#555"/>
-
-        <TextView
-                android:id="@+id/user_status"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:textColor="#555"/>
-
-    </LinearLayout>
-
-    <View android:layout_width="match_parent"
-          android:layout_height="1dp"
-          android:layout_marginTop="10dp"
-          android:layout_marginBottom="5dp"
-          android:background="#CCC"/>
-
-    <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal" android:gravity="center_vertical">
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="플레이헤드 상태"
-                android:textSize="14dp"
-                android:textColor="#555"/>
-        <TextView
-                android:id="@+id/playhead_status"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:text="VISIBLE"
-                android:textSize="14dp"
-                android:textColor="#555"/>
-
-        <CheckBox
-                android:id="@+id/playhead_toggle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="0dp"/>
-
-    </LinearLayout>
-
-    <View android:layout_width="match_parent"
-          android:layout_height="1dp"
-          android:layout_marginTop="5dp"
-          android:layout_marginBottom="5dp"
-          android:background="#CCC"/>
-
-    <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal" android:gravity="center_vertical">
-
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="플레이헤드 드래그"
-                android:textSize="14dp"
-                android:textColor="#555"/>
-        <TextView
-                android:id="@+id/playhead_drag_status"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:text=""
-                android:textSize="14dp"
-                android:textColor="#555"/>
-
-        <CheckBox
-                android:id="@+id/playhead_drag_toggle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="0dp"/>
-    </LinearLayout>
-
-    <View android:layout_width="match_parent"
-          android:layout_height="1dp"
-          android:layout_marginTop="5dp"
-          android:layout_marginBottom="5dp"
-          android:background="#CCC"/>
-
-    <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal" android:gravity="center_vertical">
-
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="플레이헤드 크기"
-                android:textSize="14dp"
-                android:textColor="#555"/>
-        <EditText
-                android:id="@+id/edit_width"
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:text="100"
-                android:textSize="13dp"
-                android:maxLength="3"
-                android:singleLine="true"
-                android:textColor="#777" android:inputType="phone|number|numberDecimal|numberSigned"/>
-
-        <TextView
-                android:id="@+id/playhead_"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="%"
-                android:textSize="14dp"
-                android:textColor="#555"/>
-        <TextView
-                android:id="@+id/btn_decide"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:text="설정"
-                android:textSize="14dp"
-                android:textColor="#222"
-                android:background="@drawable/default_button"/>
-    </LinearLayout>
-
-    <View android:layout_width="match_parent"
-          android:layout_height="1dp"
-          android:layout_marginTop="5dp"
-          android:layout_marginBottom="10dp"
-          android:background="#CCC"/>
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:text="플레이헤드 이동"
-            android:textSize="14dp"
-            android:textColor="#555"/>
-    <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center">
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:gravity="center"
-                android:text="X"
-                android:textSize="14dp"
-                android:textColor="#555"/>
-        <EditText
-                android:id="@+id/edit_x"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="0"
-                android:textSize="13dp"
-                android:textColor="#777"/>
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:padding="5dp"
-                android:gravity="center"
-                android:text="Y"
-                android:textSize="14dp"
-                android:textColor="#555"/>
-        <EditText
-                android:id="@+id/edit_y"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textSize="13dp"
-                android:text="0"
-                android:textColor="#777"/>
-
-        <TextView
-                android:id="@+id/btn_move"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="5dp"
-                android:text="이동"
-                android:textSize="14dp"
-                android:textColor="#222"
-                android:background="@drawable/default_button"/>
-
-    </LinearLayout>
-
-    <View android:layout_width="match_parent"
-          android:layout_height="1dp"
-          android:layout_marginTop="10dp"
-          android:layout_marginBottom="10dp"
-          android:background="#CCC"/>
-
-    <LinearLayout
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+            <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/sample_service_title"
+                    android:textSize="30dp"
+                    android:textColor="#222222"/>
+            <TextView
+                    android:id="@+id/refresh"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="새로고침"
+                    android:textColor="#777"/>
+
+        </LinearLayout>
+
+        <View android:layout_width="match_parent"
+              android:layout_height="1dp"
+              android:layout_marginTop="5dp"
+              android:layout_marginBottom="10dp"
+              android:background="#888"/>
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center_vertical">
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="로그인 상태"
+                    android:textSize="14dp"
+                    android:textColor="#555"/>
+
+            <TextView
+                    android:id="@+id/user_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:textColor="#555"/>
+
+        </LinearLayout>
+
+        <View android:layout_width="match_parent"
+              android:layout_height="1dp"
+              android:layout_marginTop="10dp"
+              android:layout_marginBottom="5dp"
+              android:background="#CCC"/>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" android:gravity="center_vertical">
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="플레이헤드 상태"
+                    android:textSize="14dp"
+                    android:textColor="#555"/>
+            <TextView
+                    android:id="@+id/playhead_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:text="VISIBLE"
+                    android:textSize="14dp"
+                    android:textColor="#555"/>
+
+            <CheckBox
+                    android:id="@+id/playhead_toggle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="0dp"/>
+
+        </LinearLayout>
+
+        <View android:layout_width="match_parent"
+              android:layout_height="1dp"
+              android:layout_marginTop="5dp"
+              android:layout_marginBottom="5dp"
+              android:background="#CCC"/>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" android:gravity="center_vertical">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="플레이헤드 숨기기"
+                    android:textSize="14dp"
+                    android:textColor="#555"/>
+            <TextView
+                    android:id="@+id/playhead_hide_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:text=""
+                    android:textSize="14dp"
+                    android:textColor="#555"/>
+
+            <CheckBox
+                    android:id="@+id/playhead_hide_toggle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="0dp"/>
+        </LinearLayout>
+
+        <View android:layout_width="match_parent"
+              android:layout_height="1dp"
+              android:layout_marginTop="5dp"
+              android:layout_marginBottom="5dp"
+              android:background="#CCC"/>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" android:gravity="center_vertical">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="플레이헤드 드래그"
+                    android:textSize="14dp"
+                    android:textColor="#555"/>
+            <TextView
+                    android:id="@+id/playhead_drag_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:text=""
+                    android:textSize="14dp"
+                    android:textColor="#555"/>
+
+            <CheckBox
+                    android:id="@+id/playhead_drag_toggle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="0dp"/>
+        </LinearLayout>
+
+        <View android:layout_width="match_parent"
+              android:layout_height="1dp"
+              android:layout_marginTop="5dp"
+              android:layout_marginBottom="5dp"
+              android:background="#CCC"/>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" android:gravity="center_vertical">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="플레이헤드 크기"
+                    android:textSize="14dp"
+                    android:textColor="#555"/>
+            <EditText
+                    android:id="@+id/edit_width"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="100"
+                    android:textSize="13dp"
+                    android:maxLength="3"
+                    android:singleLine="true"
+                    android:textColor="#777" android:inputType="phone|number|numberDecimal|numberSigned"/>
+
+            <TextView
+                    android:id="@+id/playhead_"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="%"
+                    android:textSize="14dp"
+                    android:textColor="#555"/>
+            <TextView
+                    android:id="@+id/btn_decide"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:text="설정"
+                    android:textSize="14dp"
+                    android:textColor="#222"
+                    android:background="@drawable/default_button"/>
+        </LinearLayout>
+
+        <View android:layout_width="match_parent"
+              android:layout_height="1dp"
+              android:layout_marginTop="5dp"
+              android:layout_marginBottom="10dp"
+              android:background="#CCC"/>
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="재생 제어"
+                android:layout_marginBottom="5dp"
+                android:text="플레이헤드 이동"
                 android:textSize="14dp"
                 android:textColor="#555"/>
-        <TextView
-                android:id="@+id/btn_play"
-                android:layout_width="wrap_content"
+        <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:text="PLAY"
-                android:textSize="12dp"
-                android:textColor="#222"
-                android:background="@drawable/default_button"/>
-        <TextView
-                android:id="@+id/btn_pause"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:clickable="true"
-                android:text="PAUSE"
-                android:textSize="12dp"
-                android:textColor="#222"
-                android:background="@drawable/default_button"/>
+                android:layout_gravity="center">
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:gravity="center"
+                    android:text="X"
+                    android:textSize="14dp"
+                    android:textColor="#555"/>
+            <EditText
+                    android:id="@+id/edit_x"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="0"
+                    android:textSize="13dp"
+                    android:textColor="#777"/>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:padding="5dp"
+                    android:gravity="center"
+                    android:text="Y"
+                    android:textSize="14dp"
+                    android:textColor="#555"/>
+            <EditText
+                    android:id="@+id/edit_y"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="13dp"
+                    android:text="0"
+                    android:textColor="#777"/>
+
+            <TextView
+                    android:id="@+id/btn_move"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="5dp"
+                    android:text="이동"
+                    android:textSize="14dp"
+                    android:textColor="#222"
+                    android:background="@drawable/default_button"/>
+
+        </LinearLayout>
+
+        <View android:layout_width="match_parent"
+              android:layout_height="1dp"
+              android:layout_marginTop="10dp"
+              android:layout_marginBottom="10dp"
+              android:background="#CCC"/>
+
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="재생 제어"
+                    android:textSize="14dp"
+                    android:textColor="#555"/>
+            <TextView
+                    android:id="@+id/btn_play"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:text="PLAY"
+                    android:textSize="12dp"
+                    android:textColor="#222"
+                    android:background="@drawable/default_button"/>
+            <TextView
+                    android:id="@+id/btn_pause"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:clickable="true"
+                    android:text="PAUSE"
+                    android:textSize="12dp"
+                    android:textColor="#222"
+                    android:background="@drawable/default_button"/>
+        </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+</ScrollView>
