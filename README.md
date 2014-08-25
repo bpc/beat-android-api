@@ -55,6 +55,8 @@ BEAT 안드로이드 어플리케이션 연동을 위한 공개 API입니다.
 | ```boolean isMovable()``` | 플레이헤드의 드래그 가능 여부를 구함 |
 | ```void setWidthRatio(float widthRatio)``` | 플레이헤드가 화면을 차지하는 비율 설정 |
 | ```float getWidthRatio()``` | 플레이헤드가 화면을 차지하는 비율을 구함 |
+| ```void setHideable(boolean hideable)``` | 플레이헤드를 화면의 상단, 하단으로 밀어넣어 숨기는 기능을 가능/불가능하게 함 |
+| ```boolean isHideable()``` | 플레이헤드의 숨김 가능 여부를 구함 |
 
 
 ## 라이센스 
