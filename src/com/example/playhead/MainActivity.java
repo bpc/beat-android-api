@@ -6,6 +6,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.net.Uri;
 import android.os.*;
 import android.util.Log;
 import android.view.View;
@@ -32,13 +33,33 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Log.d(TAG, "?");
+
         btnConnect = (TextView) findViewById(R.id.btn_connect);
         btnConnect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = getPackageManager().getLaunchIntentForPackage("com.beatpacking.beat");
-                startActivity(intent);
-                bindService(5000);
+                try {
+                    Intent intent = getPackageManager().getLaunchIntentForPackage("com.beatpacking.beat");
+                    startActivity(intent);
+                    bindService(5000);
+                } catch (NullPointerException e){
+                    try {
+                        startActivity(
+                                new Intent(
+                                        Intent.ACTION_VIEW,
+                                        Uri.parse("market://details?id=com.beatpacking.beat")
+                                )
+                        );
+                    } catch (android.content.ActivityNotFoundException anfe) {
+                        startActivity(
+                                new Intent(
+                                        Intent.ACTION_VIEW,
+                                        Uri.parse("http://play.google.com/store/apps/details?id=com.beatpacking.beat")
+                                )
+                        );
+                    }
+                }
             }
         });
     }
