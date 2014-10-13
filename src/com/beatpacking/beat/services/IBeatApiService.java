@@ -47,10 +47,10 @@ public interface IBeatApiService extends android.os.IInterface
                     reply.writeString(DESCRIPTOR);
                     return true;
                 }
-                case TRANSACTION_getAPIVersion:
+                case TRANSACTION_getBeatVersion:
                 {
                     data.enforceInterface(DESCRIPTOR);
-                    int _result = this.getAPIVersion();
+                    int _result = this.getBeatVersion();
                     reply.writeNoException();
                     reply.writeInt(_result);
                     return true;
@@ -190,14 +190,14 @@ public interface IBeatApiService extends android.os.IInterface
             {
                 return DESCRIPTOR;
             }
-            @Override public int getAPIVersion() throws android.os.RemoteException
+            @Override public int getBeatVersion() throws android.os.RemoteException
             {
                 android.os.Parcel _data = android.os.Parcel.obtain();
                 android.os.Parcel _reply = android.os.Parcel.obtain();
                 int _result;
                 try {
                     _data.writeInterfaceToken(DESCRIPTOR);
-                    mRemote.transact(Stub.TRANSACTION_getAPIVersion, _data, _reply, 0);
+                    mRemote.transact(Stub.TRANSACTION_getBeatVersion, _data, _reply, 0);
                     _reply.readException();
                     _result = _reply.readInt();
                 }
@@ -431,7 +431,7 @@ public interface IBeatApiService extends android.os.IInterface
                 return _result;
             }
         }
-        static final int TRANSACTION_getAPIVersion = (android.os.IBinder.FIRST_CALL_TRANSACTION + 0);
+        static final int TRANSACTION_getBeatVersion = (android.os.IBinder.FIRST_CALL_TRANSACTION + 0);
         static final int TRANSACTION_setHeadVisible = (android.os.IBinder.FIRST_CALL_TRANSACTION + 1);
         static final int TRANSACTION_isHeadVisible = (android.os.IBinder.FIRST_CALL_TRANSACTION + 2);
         static final int TRANSACTION_setHeadLocation = (android.os.IBinder.FIRST_CALL_TRANSACTION + 3);
@@ -447,7 +447,7 @@ public interface IBeatApiService extends android.os.IInterface
         static final int TRANSACTION_setHideable = (android.os.IBinder.FIRST_CALL_TRANSACTION + 13);
         static final int TRANSACTION_isHideable = (android.os.IBinder.FIRST_CALL_TRANSACTION + 14);
     }
-    public int getAPIVersion() throws android.os.RemoteException;
+    public int getBeatVersion() throws android.os.RemoteException;
     public void setHeadVisible(boolean b) throws android.os.RemoteException;
     public boolean isHeadVisible() throws android.os.RemoteException;
     public void setHeadLocation(int x, int y) throws android.os.RemoteException;

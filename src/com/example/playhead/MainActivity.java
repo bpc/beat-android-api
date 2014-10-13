@@ -214,7 +214,7 @@ public class MainActivity extends Activity {
 
         public void initView() {
             try {
-                version.setText("v " + apiService.getAPIVersion());
+                version.setText("v " + apiService.getBeatVersion());
                 userStatus.setText(apiService.isAuthenticated() ? "AUTHENTICATED" : "NOT AUTHENTICATED");
                 headStatus.setText(apiService.isHeadVisible() ? "VISIBLE" : "INVISIBLE");
                 editWidth.setText(Integer.toString((int)(100 * apiService.getWidthRatio())));
