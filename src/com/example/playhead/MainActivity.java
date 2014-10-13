@@ -33,8 +33,6 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Log.d(TAG, "?");
-
         btnConnect = (TextView) findViewById(R.id.btn_connect);
         btnConnect.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,6 +68,12 @@ public class MainActivity extends Activity {
         bindService();
     }
 
+    @Override
+    protected void onPause() {
+        connection.onServiceDisconnected(this.getComponentName());
+        super.onPause();
+    }
+
     private void bindService(int ms) {
         bindService();
         messageHandler.sendMessageDelayed(Message.obtain(messageHandler, MSG_NOT_AUTHENTICATED), ms);
@@ -98,6 +102,10 @@ public class MainActivity extends Activity {
 
         @Override
         public void onServiceDisconnected(ComponentName name) {
+            Intent intent = new Intent();
+            intent.setClassName("com.beatpacking.beat", "com.beatpacking.beat.services.PlayHeadService");
+            unbindService(connection);
+
             messageHandler.sendMessageDelayed(Message.obtain(messageHandler, MSG_DISCONNECTED), 500);
             if (dialog != null) {
                 dialog.dismiss();
@@ -146,6 +154,7 @@ public class MainActivity extends Activity {
 
     class TestDialog extends Dialog {
 
+        TextView version;
         TextView refresh;
         TextView userStatus;
         TextView hideStatus;
@@ -181,6 +190,7 @@ public class MainActivity extends Activity {
 
             setContentView(R.layout.test_dialog_layout);
 
+            version = (TextView) findViewById(R.id.txt_version);
             refresh = (TextView) findViewById(R.id.refresh);
             userStatus = (TextView) findViewById(R.id.user_status);
             headStatus = (TextView) findViewById(R.id.playhead_status);
@@ -204,6 +214,7 @@ public class MainActivity extends Activity {
 
         public void initView() {
             try {
+                version.setText("v " + apiService.getAPIVersion());
                 userStatus.setText(apiService.isAuthenticated() ? "AUTHENTICATED" : "NOT AUTHENTICATED");
                 headStatus.setText(apiService.isHeadVisible() ? "VISIBLE" : "INVISIBLE");
                 editWidth.setText(Integer.toString((int)(100 * apiService.getWidthRatio())));
@@ -215,6 +226,7 @@ public class MainActivity extends Activity {
 
                 editX.setText("" + Integer.toString(apiService.getHeadX()));
                 editY.setText("" + Integer.toString(apiService.getHeadY()));
+                apiService.setHeadVisible(true);
 
             } catch (RemoteException ex) {
                 Log.e(TAG, "initView()", ex);
@@ -346,9 +358,4 @@ public class MainActivity extends Activity {
         }
     }
 
-    @Override
-    protected void onDestroy() {
-        unbindService(connection);
-        super.onDestroy();
-    }
 }
