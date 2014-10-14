@@ -13,8 +13,11 @@ BEAT 안드로이드 어플리케이션 연동을 위한 공개 API입니다.
   * 생성된 ```IBeatApiService``` 로 BEAT ANDROID API를 이용할 수 있습니다.
   ```java
   IBeatApiService apiService;
-
-  public void onCreate(Bundle savedInstanceState) {
+  
+  // BEAT와 연결
+  @Override
+  protected void onResume() {
+      super.onResume();
       Intent intent = new Intent();
       intent.setClassName("com.beatpacking.beat", "com.beatpacking.beat.services.PlayHeadService");
       bindService(intent, connection, Context.BIND_AUTO_CREATE);
@@ -22,7 +25,14 @@ BEAT 안드로이드 어플리케이션 연동을 위한 공개 API입니다.
       // 플레이헤드 표시여부 확인
       boolean visible = apiService.isHeadVisible();
   }
-
+ 
+  // BEAT와 연결 해제
+  @Override
+  protected void onPause() {
+      connection.onServiceDisconnected(this.getComponentName());
+      super.onPause();
+  }
+ 
   private ServiceConnection connection = new ServiceConnection() {
       public void onServiceConnected(ComponentName name, IBinder service) 
           apiService = IBeatApiService.Stub.asInterface(service);
@@ -30,6 +40,10 @@ BEAT 안드로이드 어플리케이션 연동을 위한 공개 API입니다.
       }
 
       public void onServiceDisconnected(ComponentName name) {
+          Intent intent = new Intent();
+          intent.setClassName("com.beatpacking.beat", "com.beatpacking.beat.services.PlayHeadService");
+          unbindService(connection);
+          
           messageHandler.sendMessageDelayed(Message.obtain(messageHandler, MSG_DISCONNECTED), 500);
           if (dialog != null) {
               dialog.dismiss();
