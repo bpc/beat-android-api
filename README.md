@@ -57,6 +57,7 @@ BEAT 안드로이드 어플리케이션 연동을 위한 공개 API입니다.
 ### ```public class IBeatPlayService```
 | Public Methods | Description |
 | -------------- | --------------- |
+| ```int getBeatVersion()``` | 현재 BEAT 버전 가져오기 |
 | ```void setHeadVisible(boolean visibility)``` | 플레이헤드 표시/숨김 |
 | ```boolean isHeadVisible()``` | 플레이헤드 표시여부 확인 |
 | ```void setHeadLocation(int x, int y)``` | 스크린의 X(가로), Y(세로) 좌표로 플레이헤드를 이동시킴 |
