@@ -65,6 +65,10 @@ public class MainActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
+        Intent apiIntent = new Intent();
+        apiIntent.setClassName("com.beatpacking.beat", "com.beatpacking.beat.services.PlayHeadService");
+        apiIntent.putExtra("sender_id", getPackageName());
+        setIntent(apiIntent);
         bindService();
     }
 
@@ -80,10 +84,8 @@ public class MainActivity extends Activity {
     }
 
     private void bindService() {
-        Intent intent = new Intent();
-        intent.setClassName("com.beatpacking.beat", "com.beatpacking.beat.services.PlayHeadService");
-
-        bindService(intent, connection, Context.BIND_AUTO_CREATE);
+        Toast.makeText(this, "sender_id + " + getPackageName(), Toast.LENGTH_SHORT).show();
+        bindService(getIntent(), connection, Context.BIND_AUTO_CREATE);
         if (dialog != null)
             dialog.initView();
     }
@@ -102,15 +104,7 @@ public class MainActivity extends Activity {
 
         @Override
         public void onServiceDisconnected(ComponentName name) {
-            Intent intent = new Intent();
-            intent.setClassName("com.beatpacking.beat", "com.beatpacking.beat.services.PlayHeadService");
             unbindService(connection);
-
-            messageHandler.sendMessageDelayed(Message.obtain(messageHandler, MSG_DISCONNECTED), 500);
-            if (dialog != null) {
-                dialog.dismiss();
-                dialog = null;
-            }
         }
     };
 
