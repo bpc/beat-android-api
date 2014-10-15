@@ -70,11 +70,13 @@ public class MainActivity extends Activity {
         apiIntent.putExtra("sender_id", getPackageName());
         setIntent(apiIntent);
         bindService();
+        if (dialog != null && dialog.isShowing())
+            dialog.initView();
     }
 
     @Override
     protected void onPause() {
-        connection.onServiceDisconnected(this.getComponentName());
+        unbindService(connection);
         super.onPause();
     }
 
@@ -104,7 +106,6 @@ public class MainActivity extends Activity {
 
         @Override
         public void onServiceDisconnected(ComponentName name) {
-            unbindService(connection);
         }
     };
 
