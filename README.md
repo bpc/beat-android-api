@@ -31,7 +31,7 @@ BEAT 안드로이드 어플리케이션 연동을 위한 공개 API입니다.
   // BEAT와 연결 해제
   @Override
   protected void onPause() {
-      connection.onServiceDisconnected(this.getComponentName());
+      unbindService(connection);
       super.onPause();
   }
  
@@ -42,15 +42,6 @@ BEAT 안드로이드 어플리케이션 연동을 위한 공개 API입니다.
       }
 
       public void onServiceDisconnected(ComponentName name) {
-          Intent intent = new Intent();
-          intent.setClassName("com.beatpacking.beat", "com.beatpacking.beat.services.PlayHeadService");
-          unbindService(connection);
-          
-          messageHandler.sendMessageDelayed(Message.obtain(messageHandler, MSG_DISCONNECTED), 500);
-          if (dialog != null) {
-              dialog.dismiss();
-              dialog = null;
-          }
       }
   };
 ```
