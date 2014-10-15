@@ -20,7 +20,9 @@ BEAT 안드로이드 어플리케이션 연동을 위한 공개 API입니다.
       super.onResume();
       Intent intent = new Intent();
       intent.setClassName("com.beatpacking.beat", "com.beatpacking.beat.services.PlayHeadService");
-      bindService(intent, connection, Context.BIND_AUTO_CREATE);
+      intent.putExtra("sender_id", getPackageName());
+      setIntent(intent);
+      bindService(getIntent(), connection, Context.BIND_AUTO_CREATE);
       
       // 플레이헤드 표시여부 확인
       boolean visible = apiService.isHeadVisible();
